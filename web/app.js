@@ -56,7 +56,9 @@ function drawGraph(rec) {
     if (e.relation === "overlapping") attrs["stroke-dasharray"] = "4 3";
     else attrs["marker-end"] = "url(#arrow)";
     svg.appendChild(el("line", attrs));
-    svg.appendChild(el("text", { x: (x1 + x2) / 2, y: (y1 + y2) / 2, fill: "#666", "text-anchor": "middle" }, e.relation));
+    // Directed labels sit nearer their source so A->B and B->A don't overlap.
+    const t = e.relation === "overlapping" ? 0.5 : 0.3;
+    svg.appendChild(el("text", { x: x1 + t * (x2 - x1), y: y1 + t * (y2 - y1) - 3, fill: "#666", "text-anchor": "middle" }, e.relation));
   }
   for (const n of rec.nodes) {
     const [x, y] = pos[n.id];
