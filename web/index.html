@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Video Scene Graph Viewer</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; background: #f6f7f9; color: #222; }
+  h1 { font-size: 18px; margin: 0 0 12px; }
+  .controls { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  #slider { flex: 1; }
+  .panes { display: flex; gap: 16px; flex-wrap: wrap; }
+  .pane { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 8px; }
+  canvas { display: block; max-width: 100%; }
+  #edges { font-family: ui-monospace, monospace; font-size: 12px; max-height: 200px; overflow: auto; margin: 8px 0 0; }
+  svg text { font-size: 11px; }
+</style>
+</head>
+<body>
+<h1>Video Scene Graph Viewer <span id="title"></span></h1>
+<div class="controls">
+  <button id="prev">&larr;</button>
+  <input type="range" id="slider" min="0" value="0">
+  <button id="next">&rarr;</button>
+  <span id="info"></span>
+</div>
+<div class="panes">
+  <div class="pane"><canvas id="frame"></canvas></div>
+  <div class="pane">
+    <svg id="graph" width="420" height="420"></svg>
+    <pre id="edges"></pre>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
