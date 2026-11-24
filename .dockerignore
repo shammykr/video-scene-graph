@@ -1,0 +1,8 @@
+.venv
+.git
+build
+output
+*.so
+*.egg-info
+__pycache__
+data/*.mp4
