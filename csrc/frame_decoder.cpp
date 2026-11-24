@@ -14,7 +14,7 @@
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
-#include <libavutil/imgutils.h>
+#include <libavutil/log.h>
 #include <libswscale/swscale.h>
 }
 
@@ -166,6 +166,7 @@ private:
 
 PYBIND11_MODULE(_framedecoder, m) {
     m.doc() = "FFmpeg-backed video frame decoder";
+    av_log_set_level(AV_LOG_ERROR);
     py::class_<FrameDecoder>(m, "FrameDecoder")
         .def(py::init<const std::string&, int>(), py::arg("path"), py::arg("threads") = 0)
         .def("read", &FrameDecoder::read, "Next frame as (H, W, 3) uint8 RGB, or None at EOF")
